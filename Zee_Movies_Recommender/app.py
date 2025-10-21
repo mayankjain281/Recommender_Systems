@@ -27,7 +27,7 @@ st.set_page_config(page_title="Live Google Sheet Dashboard", layout="wide")
 st.title("📊 Live Nifty500 Dashboard (Google Sheet Connected)")
 
 # --- Google Sheet public CSV link ---
-sheet_id = "https://docs.google.com/spreadsheets/d/1RrXZTkepGLw1XdLhutivAp3mwXSKRZPHC5bi-cmEBBg/edit?usp=sharing"  # 👈 replace with your ID
+sheet_id = "1RrXZTkepGLw1XdLhutivAp3mwXSKRZPHC5bi-cmEBBg/edit?usp=sharing"  # 👈 replace with your ID
 sheet_name = "Sheet1"       # 👈 change if needed
 url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
@@ -45,5 +45,6 @@ st.dataframe(df, use_container_width=True)
 
 # streamlit run c:/Users/mayan/Desktop/Portfolio Projects/Recommender_Systems/Zee_Movies_Recommender/app.py
 # new
+
 
 
