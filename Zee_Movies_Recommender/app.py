@@ -21,30 +21,49 @@
 
 import streamlit as st
 import pandas as pd
+from st_aggrid import AgGrid  # optional, for interactive table
 
 # --- Streamlit setup ---
 st.set_page_config(page_title="Live Google Sheet Dashboard", layout="wide")
 st.title("📊 Live Nifty500 Dashboard (Google Sheet Connected)")
 
 # --- Google Sheet public CSV link ---
-sheet_id = "1RrXZTkepGLw1XdLhutivAp3mwXSKRZPHC5bi-cmEBBg/edit?usp=sharing"  # 👈 replace with your ID
-sheet_name = "Sheet1"       # 👈 change if needed
+# Only the Sheet ID is needed, not full URL
+sheet_id = "1RrXZTkepGLw1XdLhutivAp3mwXSKRZPHC5bi-cmEBBg"  # Extracted from your link
+sheet_name = "Sheet1"
 url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
 # --- Fetch data directly from Google Sheet ---
-df = pd.read_csv(url)
+@st.cache_data(ttl=300)  # cache for 5 minutes
+def load_data():
+    df = pd.read_csv(url)
+    df = df.apply(pd.to_numeric, errors='ignore')  # convert numeric columns
+    return df
 
-# --- Display data ---
+df = load_data()
+
+# --- Display live metrics ---
 st.success("✅ Live data fetched from Google Sheet (public)")
-st.dataframe(df, use_container_width=True)
+st.metric("Rows in Sheet", len(df))
 
-# --- Example metrics or charts ---
-# st.metric("Rows in Sheet", len(df))
-# if "QualityScore" in df.columns:
-#     st.metric("Avg Quality Score", round(df["QualityScore"].mean(), 2))
+if "QualityScore" in df.columns:
+    st.metric("Avg Quality Score", round(df["QualityScore"].mean(), 2))
+
+# --- Display table ---
+st.subheader("📋 Data Table")
+# Option 1: Streamlit native scrollable table
+st.dataframe(df, width=1200, height=600)
+
+# Option 2: Interactive AgGrid table (uncomment if installed)
+# AgGrid(df)
+
+# --- Optional: Auto-refresh info ---
+st.info("Data is cached and auto-refreshes every 5 minutes.")
+
 
 # streamlit run c:/Users/mayan/Desktop/Portfolio Projects/Recommender_Systems/Zee_Movies_Recommender/app.py
 # new
+
 
 
 
