@@ -31,7 +31,6 @@ sheet_id = "https://docs.google.com/spreadsheets/d/1RrXZTkepGLw1XdLhutivAp3mwXSK
 sheet_name = "Sheet1"       # 👈 change if needed
 url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
-<<<<<<< HEAD
 # --- Fetch data directly from Google Sheet ---
 df = pd.read_csv(url)
 
@@ -46,4 +45,5 @@ st.dataframe(df, use_container_width=True)
 
 # streamlit run c:/Users/mayan/Desktop/Portfolio Projects/Recommender_Systems/Zee_Movies_Recommender/app.py
 # new
+
 
