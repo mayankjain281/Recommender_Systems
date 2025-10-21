@@ -33,10 +33,14 @@ sheet_name = "Sheet1"
 sheet_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
 # --- Fetch data ---
-@st.cache_data  # caches the data so it doesn't reload every time
+# @st.cache_data(ttl=60)  # cache for 60 seconds
+
+@st.cache_data  # caches the data so it doesn't reload every time only relode when you clear cache
 def load_data(url):
-    df = pd.read_csv(url)
-    return df
+    return pd.read_csv(url)
+
+if st.button("Refresh Data"):
+    st.cache_data.clear()
 
 df = load_data(sheet_url)
 
@@ -44,3 +48,4 @@ df = load_data(sheet_url)
 st.dataframe(df)  # shows an interactive table
 st.write("Data Summary:")
 st.write(df.describe())
+
