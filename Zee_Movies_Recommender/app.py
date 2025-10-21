@@ -7,7 +7,7 @@ st.write("Press the button below to execute a Python function.")
 # Define your Python function
 def my_function():
     # Example code — you can replace this with any logic
-    result = sum([i**2 for i in range(1, 6)])  # 1²+2²+3²+4²+5² = 55
+    result = sum([i**3 for i in range(1, 6)])  # 1²+2²+3²+4²+5² = 55
     return f"✅ The result is: {result}"
 
 # Button to trigger the function
@@ -15,4 +15,5 @@ if st.button("Run Code"):
     output = my_function()
     st.success(output)
 else:
+
     st.info("Click the button to run the code.")
