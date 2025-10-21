@@ -39,12 +39,13 @@ st.success("✅ Live data fetched from Google Sheet (public)")
 st.dataframe(df, use_container_width=True)
 
 # --- Example metrics or charts ---
-st.metric("Rows in Sheet", len(df))
-if "QualityScore" in df.columns:
-    st.metric("Avg Quality Score", round(df["QualityScore"].mean(), 2))
+# st.metric("Rows in Sheet", len(df))
+# if "QualityScore" in df.columns:
+#     st.metric("Avg Quality Score", round(df["QualityScore"].mean(), 2))
 
 # streamlit run c:/Users/mayan/Desktop/Portfolio Projects/Recommender_Systems/Zee_Movies_Recommender/app.py
 # new
+
 
 
 
