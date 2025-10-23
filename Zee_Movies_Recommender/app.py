@@ -73,12 +73,12 @@ def recommend(movie):
 
 st.header('Movie Recommender System')
 
-moviesdict = pickle.load(open(r'C:\Users\mayan\Desktop\Portfolio Projects\Recommender_Systems\Zee_Movies_Recommender/movie_dict.pkl','rb'))
+moviesdict = pickle.load(open(r'C:\Users\mayan\Desktop\Portfolio Projects\Recommender_Systems\Zee_Movies_Recommender\apmovie_dict.pkl','rb'))
 movies = pd.DataFrame(moviesdict)
 
-# similarity = pickle.load(open(r'C:\Users\mayan\Desktop\Portfolio Projects\Recommender_Systems\Zee_Movies_Recommender/similarity.pkl','rb'))
+# similarity = pickle.load(open(r'C:\Users\mayan\Desktop\Portfolio Projects\Recommender_Systems\Zee_Movies_Recommender\similarity.pkl','rb'))
 import gzip, pickle
-with gzip.open("similarity_compressed.pkl.gz", "rb") as f:
+with gzip.open(r'C:\Users\mayan\Desktop\Portfolio Projects\Recommender_Systems\Zee_Movies_Recommender\similarity_compressed.pkl.gz', "rb") as f:
     similarity = pickle.load(f)
 
 
